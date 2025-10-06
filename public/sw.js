@@ -7,7 +7,6 @@ const APP_SHELL = [
   "/index.html",
   "/manifest.json",
   "/assets/react.svg",
-  "/assets/vite.svg"
 ];
 
 self.addEventListener("install", (event) => {
