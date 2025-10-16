@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Espacio entre los elementos */
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
