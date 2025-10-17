@@ -83,22 +83,21 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1>📝 Lista con Firebase</h1>
+      <h1>Lista con Firebase</h1>
 
       {/* Estado de conexión */}
       <div style={{ 
         padding: '10px', 
-        backgroundColor: isOnline ? '#e6ffe6' : '#ffe6e6',
         borderRadius: '5px',
         marginBottom: '20px'
       }}>
         {isOnline ? (
           <p style={{ color: 'green', margin: 0 }}>
-            ✅ Conectado - Sincronización automática activada
+            Conectado - Sincronización automática activada
           </p>
         ) : (
           <p style={{ color: 'red', margin: 0 }}>
-            ⏸️ Sin conexión - Los datos se guardarán localmente y se sincronizarán automáticamente
+            Sin conexión - Los datos se guardarán localmente y se sincronizarán automáticamente
           </p>
         )}
       </div>
@@ -119,12 +118,12 @@ export default function App() {
           required
         />
         <button type="submit">
-          {isOnline ? '💾 Guardar' : '💾 Guardar (Local)'}
+          {isOnline ? 'Guardar' : 'Guardar (Local)'}
         </button>
       </form>
 
       {/* Lista de entradas */}
-      <h2>📋 Registros ({entries.length})</h2>
+      <h2>Registros ({entries.length})</h2>
       <div style={{ marginTop: '20px' }}>
         {entries.map((entry) => (
           <div 
@@ -134,7 +133,6 @@ export default function App() {
               margin: '10px 0',
               border: '1px solid #ddd',
               borderRadius: '8px',
-              backgroundColor: '#f9f9f9'
             }}
           >
             <h3 style={{ margin: '0 0 5px 0' }}>{entry.title}</h3>
@@ -153,17 +151,16 @@ export default function App() {
       <div style={{ 
         marginTop: '30px', 
         padding: '15px', 
-        backgroundColor: '#e6f7ff', 
         borderRadius: '8px',
         fontSize: '14px'
       }}>
-        <h4>🔥 Firebase Magic:</h4>
+        <h4>Firebase Magic:</h4>
         <ul>
-          <li>✅ Sincronización automática</li>
-          <li>✅ Funciona offline</li>
-          <li>✅ Conflictos resueltos automáticamente</li>
-          <li>✅ Escalable</li>
-          <li>✅ Sin Service Workers complicados</li>
+          <li>Sincronización automática</li>
+          <li>Funciona offline</li>
+          <li>Conflictos resueltos automáticamente</li>
+          <li>Escalable</li>
+          <li>Sin Service Workers complicados</li>
         </ul>
       </div>
     </div>
