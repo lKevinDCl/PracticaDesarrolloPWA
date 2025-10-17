@@ -90,3 +90,48 @@ self.addEventListener("fetch", (event) => {
     caches.match(request).then(cached => cached || fetch(request))
   );
 });
+
+// --- 5. EVENTOS PUSH ---
+
+// Escucha cuando se recibe una notificación push desde el servidor
+self.addEventListener('push', event => {
+  console.log('[SW] Push Recibido');
+  
+  // Extraemos los datos de la notificación. FCM los envía como JSON.
+  const data = event.data.json();
+  console.log('[SW] Datos del push:', data);
+
+  const title = data.notification.title || 'PWA Notificación';
+  const options = {
+    body: data.notification.body || '¡Recibiste un nuevo mensaje!',
+    icon: '/vite.svg', // Opcional: El ícono que se muestra en la notificación
+    badge: '/vite.svg', // Opcional: Ícono para la barra de notificaciones en Android
+  };
+
+  // Le decimos al navegador que muestre la notificación
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+// Escucha cuando el usuario hace clic en la notificación
+self.addEventListener('notificationclick', event => {
+  console.log('[SW] Clic en la notificación');
+  
+  // Cierra la notificación
+  event.notification.close();
+
+  // Abre la ventana de la aplicación o la enfoca si ya está abierta
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientList => {
+      // Si hay una ventana abierta, la enfoca
+      for (const client of clientList) {
+        if (client.url === '/' && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      // Si no hay ninguna ventana abierta, abre una nueva
+      if (clients.openWindow) {
+        return clients.openWindow('/');
+      }
+    })
+  );
+});
